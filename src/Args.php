@@ -216,7 +216,7 @@ class Args implements JsonSerializable, ArrayAccess {
      *
      * @psalm-return array{command: mixed, opts: mixed, args: mixed, meta: mixed}
      */
-    public function jsonSerialize() {
+    public function jsonSerialize(): mixed {
         return [
             'command' => $this->command,
             'opts' => $this->opts,
@@ -233,7 +233,7 @@ class Args implements JsonSerializable, ArrayAccess {
      * The return value will be casted to boolean if non-boolean was returned.
      * @link http://php.net/manual/en/arrayaccess.offsetexists.php
      */
-    public function offsetExists($offset) {
+    public function offsetExists(mixed $offset): bool {
         return isset($this->opts[$offset]);
     }
 
@@ -244,7 +244,7 @@ class Args implements JsonSerializable, ArrayAccess {
      * @return mixed Can return all value types.
      * @link http://php.net/manual/en/arrayaccess.offsetget.php
      */
-    public function offsetGet($offset) {
+    public function offsetGet(mixed $offset): mixed {
         return $this->getOpt($offset, null);
     }
 
@@ -256,7 +256,7 @@ class Args implements JsonSerializable, ArrayAccess {
      * @return void
      * @link http://php.net/manual/en/arrayaccess.offsetset.php
      */
-    public function offsetSet($offset, $value) {
+    public function offsetSet(mixed $offset, mixed $value): void {
         $this->setOpt($offset, $value);
     }
 
@@ -267,7 +267,7 @@ class Args implements JsonSerializable, ArrayAccess {
      * @return void
      * @link http://php.net/manual/en/arrayaccess.offsetunset.php
      */
-    public function offsetUnset($offset) {
+    public function offsetUnset(mixed $offset): void {
         unset($this->opts[$offset]);
     }
 
